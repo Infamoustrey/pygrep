@@ -30,8 +30,10 @@ def outputLinesMatchingRegularExpressions():
     file = open(args.file, 'r')
 
     for line in file:
-        if line.lower().find(args.pattern.lower()) > 0:
-            print('>',line)
+        for expression in args.expression:
+            pattern = re.compile(expression)
+            if pattern.search(line):
+                print('>',line)
 
     file.close()    
 
