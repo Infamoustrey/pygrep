@@ -1,5 +1,6 @@
 import argparse, re
 
+# handle arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--verbose', help='log more verbosely', action='store_true')
 parser.add_argument('file', help='file to search for matching pattern')
@@ -7,15 +8,18 @@ parser.add_argument('pattern', help='pattern to search input file for matching l
 
 args = parser.parse_args()
 
+# Alert if started in verbose mode
 if(args.verbose):
     print('Verbose Mode Enabled')
     print('Input File: ', args.file)
     print('Pattern: ', args.pattern)
 
+
+# Open File and Print out matching lines
 file = open(args.file, 'r')
 
 for line in file:
     if line.lower().find(args.pattern.lower()) > 0:
-        print(line)
+        print('>',line)
 
 file.close()
